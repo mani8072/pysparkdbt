@@ -15,5 +15,5 @@ FROM
     {{ source('source_bronze', 'trips') }}
 
 {% if is_incremental() %}
-    where 'last_updated_timestamp' > (select coalesce(max('last_updated_timestamp'), '1900-01-01') from {{ this }})
+    where last_updated_timestamp > (select coalesce(max(last_updated_timestamp), '1900-01-01') from {{ this }})
 {% endif %}

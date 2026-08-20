@@ -4,13 +4,99 @@ sources:
     schema: bronze  
     tables:
       - name: trips
-
+        columns:
+          - name: trip_id
+            data_tests:
+              - unique
+              - not_null
+          - name: driver_id
+            data_tests:
+              - unique
+              - not_null
+          - name: customer_id
+            data_tests:
+              - unique
+              - not_null 
+          - name: vehicle_id
+            data_tests:
+              - unique
+              - not_null
+      
   - name: source_silver
     database: pysparkdbt  
     schema: silver  
     tables:
       - name: customers
+        columns:
+          - name: customer_id
+            data_tests:
+              - unique
+              - not_null
+          - name: email
+            data_tests:
+              - not_null
+          - name: full_name
+            data_tests:
+              - not_null
+          - name: last_updated_timestamp
+            data_tests:
+              - not_null
       - name: drivers
+        columns:
+          - name: driver_id
+            data_tests:
+              - unique
+              - not_null
+          - name: full_name
+            data_tests:
+              - not_null   
+          - name: last_updated_timestamp
+            data_tests:
+              - not_null
       - name: locations
+        columns:
+          - name: location_id
+            data_tests:
+              - unique
+              - not_null     
+          - name: last_updated_timestamp
+            data_tests:
+              - not_null
       - name: payments
-      - name: vechiles
+        columns:
+          - name: payment_id
+            data_tests:
+              - unique
+              - not_null
+          - name: payment_method
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments: 
+                    values: ['Card', 'Cash', 'UPI', 'Wallet']
+          - name: payment_status
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments: 
+                    values: ['Success', 'Failed', 'Pending']
+          - name: online_payment_status
+            description: Derived in PySpark from payment_method + payment_status.
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments: 
+                    values:
+                      - 'online-success'
+                      - 'online-failed'
+                      - 'online-pending'
+                      - 'offline'
+      - name: vehicles
+        columns:
+          - name: vehicle_id
+            data_tests:
+              - unique
+              - not_null
+          - name: last_updated_timestamp
+            data_tests:
+              - not_null

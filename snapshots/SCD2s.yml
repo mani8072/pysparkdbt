@@ -44,7 +44,7 @@ snapshots:
 
       
   - name: DimVehicles
-    relation: source('source_silver', 'vechiles')
+    relation: source('source_silver', 'vehicles')
     config:
       schema: gold
       database: pysparkdbt
