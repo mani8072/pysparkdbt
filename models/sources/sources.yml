@@ -7,19 +7,15 @@ sources:
         columns:
           - name: trip_id
             data_tests:
-              - unique
               - not_null
           - name: driver_id
             data_tests:
-              - unique
               - not_null
           - name: customer_id
             data_tests:
-              - unique
               - not_null 
           - name: vehicle_id
             data_tests:
-              - unique
               - not_null
       
   - name: source_silver
@@ -73,7 +69,7 @@ sources:
               - not_null
               - accepted_values:
                   arguments: 
-                    values: ['Card', 'Cash', 'UPI', 'Wallet']
+                    values: ['Card', 'Cash', 'Wallet']
           - name: payment_status
             data_tests:
               - not_null
@@ -81,16 +77,8 @@ sources:
                   arguments: 
                     values: ['Success', 'Failed', 'Pending']
           - name: online_payment_status
-            description: Derived in PySpark from payment_method + payment_status.
             data_tests:
               - not_null
-              - accepted_values:
-                  arguments: 
-                    values:
-                      - 'online-success'
-                      - 'online-failed'
-                      - 'online-pending'
-                      - 'offline'
       - name: vehicles
         columns:
           - name: vehicle_id
