@@ -9,7 +9,6 @@ snapshots:
       updated_at: last_updated_timestamp
       dbt_valid_to_current: "to_date('9999-12-31')"
 
-
   - name: DimDrivers
     relation: source('source_silver', 'drivers')
     config:
@@ -19,7 +18,6 @@ snapshots:
       strategy: timestamp
       updated_at: last_updated_timestamp
       dbt_valid_to_current: "to_date('9999-12-31')"
-
 
   - name: DimLocations
     relation: source('source_silver', 'locations')
@@ -31,7 +29,6 @@ snapshots:
       updated_at: last_updated_timestamp
       dbt_valid_to_current: "to_date('9999-12-31')"
 
-
   - name: DimPayments
     relation: source('source_silver', 'payments')
     config:
@@ -42,7 +39,6 @@ snapshots:
       updated_at: last_updated_timestamp
       dbt_valid_to_current: "to_date('9999-12-31')"
 
-      
   - name: DimVehicles
     relation: source('source_silver', 'vehicles')
     config:
