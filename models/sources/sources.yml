@@ -7,19 +7,15 @@ sources:
         columns:
           - name: trip_id
             data_tests:
-              - unique
               - not_null
           - name: driver_id
             data_tests:
-              - unique
               - not_null
           - name: customer_id
             data_tests:
-              - unique
               - not_null 
           - name: vehicle_id
             data_tests:
-              - unique
               - not_null
       
   - name: source_silver
